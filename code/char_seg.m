@@ -1,5 +1,5 @@
 function [word,result] = char_seg(d)
-%获取字符
+%get character
 word=[];
 flag=0;
 y1=8;
@@ -10,13 +10,13 @@ while flag==0
     while sum(d(:,wide+1))~=0 && wide<=n-2
         wide=wide+1;
     end
-    temp=remove_extra(imcrop(d,[1 1 wide m]));%用于返回图像的一个裁剪区域
+    temp=remove_extra(imcrop(d,[1 1 wide m]));%Returns a clipped region of the image
     
     [m1,n1]=size(temp);
     if wide<y1 && n1/m1>y2
         d(:,[1:wide])=0;
         if sum(sum(d))~=0
-            d=remove_extra(d);%切割出最小范围
+            d=remove_extra(d);%Cut out the minimum range
         else word=[];flag=1;
         end
     else
